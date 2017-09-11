@@ -1,0 +1,7 @@
+input.errorInput, textarea.errorInput {
+  border:1px solid red;
+}
+p.entrySuccess{
+  font-weight:bold;
+  font-size:18px;
+}
