@@ -1,23 +1,12 @@
-<nav class="activitiesHeader">
-  <ul class="clearfix">
-    <li><a class="btn btn-warning" (click)="handleActivities('pending')">Pending Activities</a></li>
-    <li><a class="btn btn-success" (click)="handleActivities('completed')">Completed Avtivities</a></li>
-    <li><a class="btn btn-primary" (click)="handleActivities('new')">New Activity</a></li>
+<header class="" style="margin-bottom:30px">
+  <nav class="">
+  <ul class="nav nav-tabs">
+    <li routerLinkActive="active"><a [routerLink]="['pending']">Pending Activities</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['completed']">Completed Avtivities</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['entry']">New Entry</a></li>
   </ul>
 </nav>
-<div *ngIf = "currentActivity === 'completed'">
-<app-completed-activities *ngFor = "let activity of completedActivities" [compltedActivity] = "activity"></app-completed-activities>
+</header>
+<div class="">
+  <router-outlet></router-outlet>
 </div>
-<div *ngIf = "currentActivity === 'pending'">
-<app-pending-activities *ngFor = "let activity of pendingActivities" [pendingActivity] = "activity"></app-pending-activities>
-</div>
-<div *ngIf = "currentActivity === 'new'">
-<app-student-entry></app-student-entry>
-</div>
-<!-- <div class="detailsPrompt" style="display:none">
-  <div class="">
-    <p>{{ pendingActCompleted.name }} </p>
-    <label> Enter Comments: </label>
-    <textarea></textarea>
-  </div>
-</div> -->

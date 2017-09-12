@@ -15,8 +15,14 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 
 const routesPath = [
-  {path:"", component : HomeComponent},
-  {path: "activities", component: ActivitiesComponent},
+  {path:"",redirectTo:"home",pathMatch:"full"},
+  {path:"home", component : HomeComponent},
+  {path: "activities", component: ActivitiesComponent, children:[
+    {path: "", pathMatch: 'full', redirectTo:'pending'},
+    {path: "pending", component: PendingActivitiesComponent},
+    {path: "completed", component: CompletedActivitiesComponent},
+    {path: "entry", component: StudentEntryComponent}
+  ]},
   {path: "about-us", component: AboutUsComponent}
 ]
 @NgModule({

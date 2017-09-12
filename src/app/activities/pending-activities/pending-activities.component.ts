@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 import { PendingActivities } from './pending-activities.model';
 import { CompletedActivities } from '../completed-activities/completed-activities.model';
@@ -12,8 +13,9 @@ import { PendingActService } from './pending-act.service';
   templateUrl: './pending-activities.component.html',
   styleUrls: ['./pending-activities.component.css']
 })
-export class PendingActivitiesComponent implements OnInit {
-@Input() pendingActivity: PendingActivities;
+export class PendingActivitiesComponent implements OnInit, OnDestroy {
+pendingActivities: PendingActivities[];
+private pendingSubscription: Subscription;
 currentPendingItem  : PendingActivities;
 completedActivity : CompletedActivities;
 addToComplete = false;
@@ -22,6 +24,12 @@ currentId = '';
   private pendingActService: PendingActService ) { }
 
   ngOnInit() {
+    this.pendingActivities = this.pendingActService.getActivities();
+    this.pendingSubscription = this.pendingActService.pendingActObserver.subscribe(
+      (pendingActivity: PendingActivities[]) => {
+        this.pendingActivities = pendingActivity;
+      }
+    );
   }
   displayPrompt(id){
         this.currentId = id;
@@ -38,5 +46,8 @@ currentId = '';
   );
     this.completedActService.addToCompletedActivities(this.completedActivity);
     this.pendingActService.deleteCurrentPendingItem(this.currentPendingItem.id);
+  }
+  ngOnDestroy() {
+    this.pendingSubscription.unsubscribe();
   }
 }
