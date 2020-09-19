@@ -7,7 +7,7 @@ import { CompletedActivities } from './completed-activities.model';
   styleUrls: ['./completed-activities.component.css']
 })
 export class CompletedActivitiesComponent implements OnInit {
-@Input() compltedActivity: CompletedActivities;
+  @Input() compltedActivity: CompletedActivities;
   constructor() { }
 
   ngOnInit() {

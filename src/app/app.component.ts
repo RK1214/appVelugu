@@ -6,7 +6,7 @@ import { PendingActService } from './activities/pending-activities/pending-act.s
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers:[CompletedActService, PendingActService]
+  providers: [CompletedActService, PendingActService]
 })
 export class AppComponent {
   title = 'app works!';

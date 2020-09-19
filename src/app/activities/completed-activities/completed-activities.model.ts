@@ -3,9 +3,9 @@ export class CompletedActivities {
   public name: string;
   public action: string;
   public description: string;
-  public currentPosition : string;
+  public currentPosition: string;
   public amount: number;
-  constructor (id:number, name:string, action: string, description: string, currentPosition: string, amount: number ){
+  constructor(id: number, name: string, action: string, description: string, currentPosition: string, amount: number) {
     this.id = id;
     this.name = name;
     this.action = action;

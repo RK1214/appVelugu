@@ -12,14 +12,14 @@ import { PendingActService } from './pending-activities/pending-act.service';
   styleUrls: ['./activities.component.css']
 })
 export class ActivitiesComponent implements OnInit, OnDestroy {
-completedActivities: CompletedActivities[];
-pendingActivities: PendingActivities[];
-pendingActCompleted: PendingActivities;
-currentActivity = 'pending';
-private pendingSubscription: Subscription;
-private completeSubscription: Subscription;
+  completedActivities: CompletedActivities[];
+  pendingActivities: PendingActivities[];
+  pendingActCompleted: PendingActivities;
+  currentActivity = 'pending';
+  private pendingSubscription: Subscription;
+  private completeSubscription: Subscription;
   constructor(private completedActService: CompletedActService,
-  private pendingActService: PendingActService) { }
+    private pendingActService: PendingActService) { }
 
   ngOnInit() {
     this.completedActivities = this.completedActService.getActivities();
@@ -35,12 +35,12 @@ private completeSubscription: Subscription;
       }
     );
   }
-handleActivities(recievedActivity){
-  this.currentActivity = recievedActivity;
-}
+  handleActivities(recievedActivity) {
+    this.currentActivity = recievedActivity;
+  }
 
-ngOnDestroy() {
-  this.pendingSubscription.unsubscribe();
-  this.completeSubscription.unsubscribe();
-}
+  ngOnDestroy() {
+    this.pendingSubscription.unsubscribe();
+    this.completeSubscription.unsubscribe();
+  }
 }
