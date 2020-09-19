@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { CompletedActivities } from './completed-activities/completed-activities.model';
 import { CompletedActService } from './completed-activities/completed-act.service';
