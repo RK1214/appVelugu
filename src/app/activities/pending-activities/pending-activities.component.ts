@@ -14,14 +14,14 @@ import { PendingActService } from './pending-act.service';
   styleUrls: ['./pending-activities.component.css']
 })
 export class PendingActivitiesComponent implements OnInit, OnDestroy {
-pendingActivities: PendingActivities[];
-private pendingSubscription: Subscription;
-currentPendingItem  : PendingActivities;
-completedActivity : CompletedActivities;
-addToComplete = false;
-currentId: number;
-  constructor(private completedActService: CompletedActService ,
-  private pendingActService: PendingActService ) { }
+  pendingActivities: PendingActivities[];
+  private pendingSubscription: Subscription;
+  currentPendingItem: PendingActivities;
+  completedActivity: CompletedActivities;
+  addToComplete = false;
+  currentId: number;
+  constructor(private completedActService: CompletedActService,
+    private pendingActService: PendingActService) { }
 
   ngOnInit() {
     this.pendingActivities = this.pendingActService.getActivities();
@@ -31,19 +31,19 @@ currentId: number;
       }
     );
   }
-  displayPrompt(id: number){
-        this.currentId = id;
+  displayPrompt(id: number) {
+    this.currentId = id;
   }
   cancelAdd() {
     this.currentId = 0;
   }
-  moveToComplete(id: number, form1:NgForm) {
+  moveToComplete(id: number, form1: NgForm) {
     this.currentPendingItem = this.pendingActService.getCurrentPendingItem(id);
     this.completedActivity = new CompletedActivities(this.currentPendingItem.id,
-    this.currentPendingItem.name,this.currentPendingItem.action,
-    this.currentPendingItem.description,form1.value.currentPosition,
-    this.currentPendingItem.amount
-  );
+      this.currentPendingItem.name, this.currentPendingItem.action,
+      this.currentPendingItem.description, form1.value.currentPosition,
+      this.currentPendingItem.amount
+    );
     this.completedActService.addToCompletedActivities(this.completedActivity);
     this.pendingActService.deleteCurrentPendingItem(this.currentPendingItem.id);
   }

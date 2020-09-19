@@ -12,7 +12,7 @@ export class PendingActService {
   getActivities() {
     return this.pendingActivitiesList.slice();
   }
-  addPendingActivity(pendingActivity) {
+  addPendingActivity(pendingActivity: PendingActivities) {
     this.pendingActivitiesList.push(pendingActivity);
     console.log(this.pendingActivitiesList, pendingActivity);
     this.pendingActObserver.next(this.pendingActivitiesList.slice());
