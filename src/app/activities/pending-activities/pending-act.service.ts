@@ -1,8 +1,9 @@
-import { EventEmitter } from '@angular/core'
+import { EventEmitter, Injectable } from '@angular/core'
 import { Subject } from 'rxjs';
 
 import { PendingActivities } from './pending-activities.model';
 
+@Injectable()
 export class PendingActService {
   pendingActObserver = new Subject<PendingActivities[]>();
   private pendingActivitiesList: PendingActivities[] = [

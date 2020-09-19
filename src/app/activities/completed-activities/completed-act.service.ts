@@ -1,5 +1,7 @@
 import { Subject } from 'rxjs';
 import { CompletedActivities } from './completed-activities.model';
+import { Injectable } from "@angular/core";
+@Injectable()
 export class CompletedActService {
   completedActObserver = new Subject<CompletedActivities[]>();
   private completedActivities: CompletedActivities[] = [
