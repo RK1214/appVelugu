@@ -1,27 +1,24 @@
-<div class="">
+<div class="" *ngFor="let activity of pendingActivities">
   <div class="list-group">
-  <a class="list-group-item clearfix" style="cursor:default">
-    <h4 class="list-group-item-heading">{{ pendingActivity.name  }}</h4>
-    <p class="list-group-item-text">{{ pendingActivity.action  }}</p>
-    <p class="list-group-item-text">{{ pendingActivity.description  }}</p>
-    <p class="list-group-item-text">{{ pendingActivity.amount  }}</p>
-    <div class="list-group-item-text" *ngIf = "pendingActivity.id === currentId">
-    <form (ngSubmit)="moveToComplete(pendingActivity.id,c)" #c="ngForm">
-      <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Enter Comments </label>
-      <textarea class="col-sm-6" ngModel name="currentPosition" required></textarea>
-      <input type="submit" class="btn btn-success col-sm-1" style="margin:0 5px" [disabled]="!c.valid" value="Add">
-      <input type="button" class="btn btn-warning col-sm-1" (click)="cancelAdd()" value="Cancel">
-    </div>
+    <a class="list-group-item clearfix" style="cursor:default">
+      <h4 class="list-group-item-heading">{{ activity.name  }}</h4>
+      <p class="list-group-item-text">{{ activity.action  }}</p>
+      <p class="list-group-item-text">{{ activity.description  }}</p>
+      <p class="list-group-item-text">{{ activity.amount  }}</p>
+      <div class="list-group-item-text" *ngIf="activity.id === currentId">
+        <form (ngSubmit)="moveToComplete(activity.id,c)" #c="ngForm">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Enter Comments </label>
+            <textarea class="col-sm-6" ngModel name="currentPosition" required></textarea>
+            <input type="submit" class="btn btn-success col-sm-1" style="margin:0 5px" [disabled]="!c.valid"
+              value="Add">
+            <input type="button" class="btn btn-warning col-sm-1" (click)="cancelAdd()" value="Cancel">
+          </div>
 
-    </form>
-    </div>
-    <button class="btn btn-success" style="margin-top:10px" *ngIf = "!(pendingActivity.id===currentId)" (click)="displayPrompt(pendingActivity.id)">Add to Completed</button>
-  </a>
-</div>
-</div>
-<div class="maskAbove" *ngIf="addToComplete"></div>
-<div *ngIf="addToComplete" class="addToCompleteWindow">
-  <label>Enter Comments </label>
-  <textarea></textarea>
+        </form>
+      </div>
+      <button class="btn btn-success" style="margin-top:10px" *ngIf="!(activity.id===currentId)"
+        (click)="displayPrompt(activity.id)">Add to Completed</button>
+    </a>
+  </div>
 </div>

@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ActivitiesComponent } from './activities/activities.component';
@@ -15,8 +15,14 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 
 const routesPath = [
-  {path:"", component : HomeComponent},
-  {path: "activities", component: ActivitiesComponent},
+  {path:"",redirectTo:"home",pathMatch:"full"},
+  {path:"home", component : HomeComponent},
+  {path: "activities", component: ActivitiesComponent, children:[
+    {path: "", pathMatch: 'full', redirectTo:'pending'},
+    {path: "pending", component: PendingActivitiesComponent},
+    {path: "completed", component: CompletedActivitiesComponent},
+    {path: "entry", component: StudentEntryComponent}
+  ]},
   {path: "about-us", component: AboutUsComponent}
 ]
 @NgModule({
@@ -34,7 +40,7 @@ const routesPath = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(routesPath)
   ],
   providers: [],
