@@ -9,18 +9,18 @@ import { PendingActivities } from '../pending-activities/pending-activities.mode
 })
 export class StudentEntryComponent implements OnInit {
   detailsSubmitted = false;
-  constructor(private pendingActService: PendingActService ) { }
+  constructor(private pendingActService: PendingActService) { }
 
   ngOnInit() {
   }
-  onAddTask(form: NgForm){
+  onAddTask(form: NgForm) {
     const value = form.value;
     let pA = this.pendingActService.getActivities();
     let IdList = pA.map(
       (val) => val.id
     );
-    let maxId = IdList.sort(function(a,b){
-      return b-a;
+    let maxId = IdList.sort(function (a, b) {
+      return b - a;
     });
     //console.log(maxId[0], value.vName, value.vSponserType, value.vDescription, value.vAmount);
     const pendingActivity = new PendingActivities(++maxId[0], value.vName, value.vSponserType, value.vDescription, value.vAmount);

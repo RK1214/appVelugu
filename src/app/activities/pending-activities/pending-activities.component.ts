@@ -19,7 +19,7 @@ private pendingSubscription: Subscription;
 currentPendingItem  : PendingActivities;
 completedActivity : CompletedActivities;
 addToComplete = false;
-currentId = '';
+currentId: number;
   constructor(private completedActService: CompletedActService ,
   private pendingActService: PendingActService ) { }
 
@@ -31,13 +31,13 @@ currentId = '';
       }
     );
   }
-  displayPrompt(id){
+  displayPrompt(id: number){
         this.currentId = id;
   }
-  cancelAdd(){
-    this.currentId = '';
+  cancelAdd() {
+    this.currentId = 0;
   }
-  moveToComplete(id, form1:NgForm){
+  moveToComplete(id: number, form1:NgForm) {
     this.currentPendingItem = this.pendingActService.getCurrentPendingItem(id);
     this.completedActivity = new CompletedActivities(this.currentPendingItem.id,
     this.currentPendingItem.name,this.currentPendingItem.action,

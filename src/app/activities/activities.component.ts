@@ -15,7 +15,42 @@ import { PendingActService } from './pending-activities/pending-act.service';
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.css']
 })
+<<<<<<< HEAD
 export class ActivitiesComponent implements OnInit {
   constructor( ) { }
   ngOnInit() { }
+=======
+export class ActivitiesComponent implements OnInit, OnDestroy {
+  completedActivities: CompletedActivities[];
+  pendingActivities: PendingActivities[];
+  pendingActCompleted: PendingActivities;
+  currentActivity = 'pending';
+  private pendingSubscription: Subscription;
+  private completeSubscription: Subscription;
+  constructor(private completedActService: CompletedActService,
+    private pendingActService: PendingActService) { }
+
+  ngOnInit() {
+    this.completedActivities = this.completedActService.getActivities();
+    this.completeSubscription = this.completedActService.completedActObserver.subscribe(
+      (completedActivity: CompletedActivities[]) => {
+        this.completedActivities = completedActivity;
+      }
+    );
+    this.pendingActivities = this.pendingActService.getActivities();
+    this.pendingSubscription = this.pendingActService.pendingActObserver.subscribe(
+      (pendingActivity: PendingActivities[]) => {
+        this.pendingActivities = pendingActivity;
+      }
+    );
+  }
+  handleActivities(recievedActivity) {
+    this.currentActivity = recievedActivity;
+  }
+
+  ngOnDestroy() {
+    this.pendingSubscription.unsubscribe();
+    this.completeSubscription.unsubscribe();
+  }
+>>>>>>> c1ee2dc... added prettier and configured changes with prettier
 }

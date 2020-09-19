@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CompletedActivities } from './completed-activities.model';
@@ -10,9 +10,9 @@ import { CompletedActService } from './completed-act.service';
   styleUrls: ['./completed-activities.component.css']
 })
 export class CompletedActivitiesComponent implements OnInit, OnDestroy {
-completedActivities: CompletedActivities[];
-private completeSubscription: Subscription;
-  constructor( private completedActService: CompletedActService ) { }
+  completedActivities: CompletedActivities[];
+  private completeSubscription: Subscription;
+  constructor(private completedActService: CompletedActService) { }
 
   ngOnInit() {
     this.completedActivities = this.completedActService.getActivities();
